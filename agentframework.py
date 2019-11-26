@@ -31,7 +31,7 @@ class Agent:
         self.agents = agents
         self.wolves = wolves
         self.store = 0 
-        self.neighbourhoods = 150
+        self.neighbourhoods = 99
         
     def __str__(self):
     #letting it know it's a string
@@ -61,12 +61,12 @@ class Agent:
                 self.x = self.x - 3
             
             if (self.y > closestwolf[1]):
-                self.y = self.y + 3
+                self.y = self.y + 6
             elif (self.y == closestwolf[1]):
                 #donothing
                 self.y == closestwolf[1]
             else :
-                self.y = self.y - 3
+                self.y = self.y + 6
 
         
         if random.random() < 0.5:
@@ -77,8 +77,8 @@ class Agent:
         if self.y < 0:
             self.y = 0
 
-        if self.y > 200:
-            self.y = 200
+        if self.y > 250:
+            self.y = 250
             
         if random.random() < 0.5:
             self.x = (self.x + 1) #% 280
@@ -88,8 +88,8 @@ class Agent:
         if self.x < 0:
             self.x = 0
                     
-        if self.x > 200:
-            self.x = 200
+        if self.x > 250:
+            self.x = 250
             
             
     def eat(self): # makes eat environment

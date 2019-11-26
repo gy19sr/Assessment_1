@@ -19,7 +19,7 @@ class Wolf:
         self.wolves = wolves
         self.store = 0 
         self.sheeps = sheeps
-        self.neighbourhood = 200
+        self.neighbourhood = 150
         
     def __str__(self):
     #letting it know it's a string
@@ -48,13 +48,19 @@ class Wolf:
             else:
                 self.x = self.x + 3
             
-            if (self.y > closestSheep[1]):
+            if (self.y > closestSheep[2]):
                 self.y = self.y - 3
-            elif (self.y == closestSheep[1]):
+            elif (self.y == closestSheep[2]):
                 #donothing
-                self.y == closestSheep[1]
+                self.y == closestSheep[2]
             else :
                 self.y = self.y + 3
+
+            if closestSheep[0] < 20:
+                for sheep in self.sheeps:
+                    if sheep.x == closestSheep[1] and sheep.y == closestSheep[2]:
+                        self.sheeps.remove(sheep)
+                        break
         else:
             # Otheriwise move randomly
             if random.random() < 0.5:
@@ -78,6 +84,7 @@ class Wolf:
                 
             if self.x > 200:
                 self.x = 200                   
+        
             
     def eat(self): # makes eat environment
         if self.environment[self.y][self.x] > 10:

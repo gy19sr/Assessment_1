@@ -70,7 +70,7 @@ environment = []
 for row in reader:				# A list of rows
     # Lines here happen before each row is processed
     rowlist = []
-    #means environment made up of rowlists
+    # means environment made up of rowlists
     for value in row:				# A list of value
         # do something with values.
         rowlist.append(value)
@@ -85,61 +85,55 @@ f.close()
 
 
 
-
-
-
-
-num_of_agents = 5
-#number of agents
-num_of_iterations = 50
-#number of iterations
 neighbourhood = 5
 #noticing distance between agents 
-num_of_wolves = 5
-#set number of wolves
 fig = matplotlib.pyplot.figure(figsize=(7, 7))
 #
 ax = fig.add_axes([0, 0, 1, 1])
-#
+num_of_iterations = 100
+#number of iterations
 
 
-
-
-
-
-
-wolves = []
-
-agents = []
-# Make the agents list
-#agents.append(agentframework.Agent(environment, agents, 50, 50))
-
-for i in range(num_of_agents):
-#
-    y = int(td_ys[i].text)
-    #
-    x = int(td_xs[i].text)
-    #
-    agents.append(agentframework.Agent(environment, agents, wolves, x, y))
-    #connects agents to the environment
-    #print(agents[i])
- 
-
-
-#make the wolves list
-#wolves.append(wolfframework.Wolf(environment, wolves, agents, 0, 0))
-
-
-for i in range(num_of_wolves):
-#    agents.append(agentframework.Wolf)
-#    wolves.append(agentframework.Wolf())
-#    x = random.randint(0,99)
+def setup():
+    global num_of_agents
+    num_of_agents = scale_sheep.get()
+    #number of agents
+    global num_of_wolves
+    num_of_wolves = scale_wolves.get()
+    #set number of wolves
+    global wolves
+    wolves = []
+    global agents
+    agents = []
+    # Make the agents list
+    #agents.append(agentframework.Agent(environment, agents, 50, 50))
     
-#    y = random.randint(0,99)
-    x = random.randint(100,199)
-    y = random.randint(100,199)
-    wolves.append(wolfframework.Wolf(environment, wolves, agents, x, y))
-    print ("wovles:", wolves[i])
+    for i in range(num_of_agents):
+    #
+        y = int(td_ys[i].text)
+        #
+        x = int(td_xs[i].text)
+        #
+        agents.append(agentframework.Agent(environment, agents, wolves, x, y))
+        #connects agents to the environment
+        #print(agents[i])
+     
+    
+    
+    #make the wolves list
+    #wolves.append(wolfframework.Wolf(environment, wolves, agents, 0, 0))
+    
+    
+    for i in range(num_of_wolves):
+    #    agents.append(agentframework.Wolf)
+    #    wolves.append(agentframework.Wolf())
+    #    x = random.randint(0,99)
+        
+    #    y = random.randint(0,99)
+        x = random.randint(150,199)
+        y = random.randint(0,50)
+        wolves.append(wolfframework.Wolf(environment, wolves, agents, x, y))
+        print ("wovles:", wolves[i])
 
 #now define update function and incorporate below for animation
 
@@ -158,29 +152,31 @@ def update(frame_number):
             
 #    random.shuffle(agents)
         
-    for i in range(num_of_wolves):
+    for i in range(len(wolves)):
         wolves[i].move()
+
+    print(len(agents))
     
-    for i in range(num_of_agents):
+    for i in range(len(agents)):
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
-               
-    
-    if agents[i].store >= 400:
-    #setting stopping condition of max stomach storage 
-    
-        carry_on = False
-        #stops iterations
-        print("stopping condition met")
-        #lets user know storages were filled
+
+        if agents[i].store >= 400:
+        #setting stopping condition of max stomach storage 
+        
+            carry_on = False
+            #stops iterations
+            print("stopping condition met")
+            #lets user know storages were filled
        
         
-    for i in range(num_of_agents):  
-        matplotlib.pyplot.scatter(agents[i].x,agents[i].y,color='blue')
+    for i in range(len(agents)):  
+        matplotlib.pyplot.scatter(agents[i].x,agents[i].y,color='white')
         
-    for i in range(num_of_wolves):  
+    for i in range(len(wolves)):  
         matplotlib.pyplot.scatter(wolves[i].x,wolves[i].y,color='red')
+    
     
  
     
@@ -204,8 +200,8 @@ def gen_function():
         print("STORE: ",agents[i].store)     
         #list the final stomach content of the cows 
     for i in range(num_of_wolves):
-        print ("wovles:", wolves[i])
-
+        print ("wolves:", wolves[i])
+#        print ("agents:", agents[])
 
 
 
@@ -229,6 +225,25 @@ run_button = tkinter.Button(frame,
                    text="Run Model",
                    command=run)
 run_button.pack(side=tkinter.LEFT)
+
+
+
+scale_sheep = tkinter.Scale(root, from_=1, to_= 100, orient='horizontal')
+scale_sheep.pack()
+
+button = tkinter.Button(root, text="change sheep amount", command=setup)
+button.pack()
+
+
+scale_wolves = tkinter.Scale(root, from_=1, to_= 10, orient='horizontal')
+scale_wolves.pack()
+
+button = tkinter.Button(root, text="change wolf amount", command=setup)
+button.pack()
+
+
+
+
 
 
 
