@@ -20,26 +20,27 @@ download whole repository to run model (model, in, agentframework are essential)
 
 ## Instructions to run model:
 
-1. open "Model.py" in Spyder (Phthon).
+1. Open "Model.py" in Spyder (Phthon).
 2. Run model.
-3. full screen the pop up model window.
-4. use the slider to change the number of sheep. 
-5. then click the "change sheep amount" button.
-6. use the slider to change the number of wolves.
-7. then click the "change wolf amount" button.
+3. Full screen the pop up model window.
+4. Use the slider to change the number of sheep. 
+5. Then click the "change sheep amount" button.
+6. Use the slider to change the number of wolves.
+7. Then click the "change wolf amount" button.
 8. Only once those are set should you then click the "Run Model" Button.
 9. Once the model finishes you can click "quit".
-10. the console will print if the stopping condition is met and number of iterations.
+10.The console will print if the stopping condition is met and number of iterations.
 
 ### Running the model again:
 If wish to run model again, make sure you end the run by clicking the red square in console. Then restarting the kernal ensures that the model will run smoothly again 
 
 ### How it should run:
-stopping conditions:
-number of iterations:
+There should be an environment and two groups of agents. white are sheep and red are wolves. An animation will run where wolves will hunt down sheep and sheep will run away. When the wolves get close enough, they will eat the sheeps. The sheeps will consistantly eat grass and if they eat enough (500) the model will end and "stopping condition met" will be printed in the console. Otherwise the model will run until all iterations have been met. 
 
 ### known issues and what to avoid:
-If any issue in running the model occurs, then please email gy19sr@leeds.ac.uk. A response will be given within two working days.
+
+Not restarting the Kenal before restarting may cause spyder to stall. 
+If any issue in running the model occurs, please email gy19sr@leeds.ac.uk. A response will be given within two working days.
 
 ### Licensing:
 found on repository
