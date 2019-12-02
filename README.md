@@ -1,16 +1,16 @@
 # Assessment_1
-this is the first project for GEOG5990 at Leeds University
+This is the first project for GEOG5990 at Leeds University
 
 Student ID: 201378222
 
 
 ### List of Contents:
-1.Model.py -- This is the main model that will be run
-2.agentframework.py -- This is where code for the agents in the model are kept (essential to model)
-3.in.txt -- This is the text file that holds the values for the environment (essential to model)
-4.README.md -- This is what is currently being viewed, important details about the code and model within here
-5.License -- This is the license agreement for the code within the repositry 
-6.__pycache__ -- This is automatically generated folder, often kept hidden in repositories
+1. Model.py -- This is the main model that will be run
+2. agentframework.py -- This is where code for the agents in the model are kept (essential to model)
+3. in.txt -- This is the text file that holds the values for the environment (essential to model)
+4. README.md -- This is what is currently being viewed, important details about the code and model within here
+5. License -- This is the license agreement for the code within the repositry 
+6. __pycache__ -- This is automatically generated folder, often kept hidden in repositories
   
 
 ### Prerequisites
