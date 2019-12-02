@@ -20,8 +20,8 @@ import matplotlib.pyplot
 import random
 import agentframework
 #connects to the agentframework file
-import wolfframework
-#connects to the wolf framework file
+#import wolfframework
+#connects to the wolf framework file if wish to view sep, just switch the wolf append
 import csv
 #allows for csv files to be added
 import matplotlib.animation 
@@ -85,55 +85,70 @@ f.close()
 
 
 
+
+#intial set up of wolves, agents, iterations, neighborhood
+
 neighbourhood = 5
 #noticing distance between agents 
 fig = matplotlib.pyplot.figure(figsize=(7, 7))
-#
+#setting up fig size
 ax = fig.add_axes([0, 0, 1, 1])
+#setup figure axis
 num_of_iterations = 100
 #number of iterations
 
 
+
+
+
+
 def setup():
+#this is done to allow for connection with scale bar
     global num_of_agents
+    #global allows to be seen outside of def function, agents=sheep 
     num_of_agents = scale_sheep.get()
-    #number of agents
+    #number of agents, connecting with scale bar
     global num_of_wolves
+    #number of wolves
     num_of_wolves = scale_wolves.get()
     #set number of wolves
     global wolves
+    #make wolves global
     wolves = []
+    #makes wolves list
     global agents
+    #makes agents global
     agents = []
     # Make the agents list
-    #agents.append(agentframework.Agent(environment, agents, 50, 50))
     
     for i in range(num_of_agents):
-    #
+    #setting x y for sheep
         y = int(td_ys[i].text)
-        #
+        #grabing text from html
         x = int(td_xs[i].text)
-        #
+        #grabing text from html
         agents.append(agentframework.Agent(environment, agents, wolves, x, y))
-        #connects agents to the environment
+        #connects agents to the environment, and grabs from framework
         #print(agents[i])
-     
-    
-    
-    #make the wolves list
-    #wolves.append(wolfframework.Wolf(environment, wolves, agents, 0, 0))
     
     
     for i in range(num_of_wolves):
-    #    agents.append(agentframework.Wolf)
-    #    wolves.append(agentframework.Wolf())
-    #    x = random.randint(0,99)
-        
-    #    y = random.randint(0,99)
+    #seeting up num of wolves
         x = random.randint(150,199)
+        #seting wolves random starting x coordinate
         y = random.randint(0,50)
-        wolves.append(wolfframework.Wolf(environment, wolves, agents, x, y))
-        print ("wovles:", wolves[i])
+        #setting agents random y starting points
+        wolves.append(agentframework.Wolf(environment, wolves, agents, x, y))
+        #connects agents to the environment, and grabs from framework
+        #print ("wovles:", wolves[i])
+        
+
+
+
+
+
+
+
 
 #now define update function and incorporate below for animation
 
@@ -141,28 +156,36 @@ carry_on = True
 #allows for new interation to run
 
 def update(frame_number):
-    
-    fig.clear()   
+#each fram of the animation    
+    fig.clear()
+    #clear figure
     global carry_on
-    
+    #carry on with new frame
     matplotlib.pyplot.ylim(0,250)
+    #plot size
     matplotlib.pyplot.xlim(0,250)
-    
+    #plot size
     matplotlib.pyplot.imshow(environment)
-            
-#    random.shuffle(agents)
+    #display environment
+
         
     for i in range(len(wolves)):
+    #setting wolves movement
         wolves[i].move()
+        #move wolves
 
-    print(len(agents))
+    #print(len(agents))
     
     for i in range(len(agents)):
+    #what the agents do each iteration
         agents[i].move()
+        #move agents
         agents[i].eat()
+        #agents eat
         agents[i].share_with_neighbours(neighbourhood)
+        #agents share with other agents
 
-        if agents[i].store >= 400:
+        if agents[i].store >= 600:
         #setting stopping condition of max stomach storage 
         
             carry_on = False
@@ -172,10 +195,13 @@ def update(frame_number):
        
         
     for i in range(len(agents)):  
+    #for agents
         matplotlib.pyplot.scatter(agents[i].x,agents[i].y,color='white')
-        
+        #plot agents each frame and make them white
     for i in range(len(wolves)):  
+    #for wolves
         matplotlib.pyplot.scatter(wolves[i].x,wolves[i].y,color='red')
+        #plot wolves each fram and make them red
     
     
  
@@ -184,6 +210,7 @@ def update(frame_number):
     
     
 def gen_function():
+#seting up to run a new iteration
     a = 0
     global carry_on
     #Not actually needed as we're not assigning, but clearer
@@ -195,74 +222,92 @@ def gen_function():
         #conduct a new iteration
     print("stopping iteration num", a)
      #print how many iterations were run  
-    for i in range(num_of_agents):
-    #looking at all individual agents
-        print("STORE: ",agents[i].store)     
-        #list the final stomach content of the cows 
-    for i in range(num_of_wolves):
-        print ("wolves:", wolves[i])
-#        print ("agents:", agents[])
+    #for i in range(num_of_agents):
+        #print("STORE: ",agents[i].store)     
+   #for i in range(num_of_wolves):
+        #print ("wolves:", wolves[i])
+        
+
 
 
 
 
 
 def run():
+#define run fucntion to run final model
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
+    #what is to be animated
     canvas.draw()
+    #display canvas
    
     
 root = tkinter.Tk()
+#setting root
 root.wm_title("Model")
+#root title
 canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+#what should be displayed on the canvas, make sure correct backend ikinter is set in spyder
 canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+#pack the canvas
+
+
 
 frame = tkinter.Frame(root)
+#set frame
 frame.pack()
+#pack the frame
 
 
 run_button = tkinter.Button(frame,
+#new run button 
                    text="Run Model",
                    command=run)
+#button runs model
 run_button.pack(side=tkinter.LEFT)
-
+#place button left side
 
 
 scale_sheep = tkinter.Scale(root, from_=1, to_= 100, orient='horizontal')
+#set sheeps scale bar
 scale_sheep.pack()
+#pack the scale bar
+
 
 button = tkinter.Button(root, text="change sheep amount", command=setup)
+#take the scalebar number as the number of agents 
 button.pack()
 
-
 scale_wolves = tkinter.Scale(root, from_=1, to_= 10, orient='horizontal')
+#set scale bar for wolves
 scale_wolves.pack()
 
 button = tkinter.Button(root, text="change wolf amount", command=setup)
+#take the scalebar number as the number of wolves
 button.pack()
-
-
-
 
 
 
 
 quit_button = tkinter.Button(frame, 
+#quit button 
                    text="QUIT", 
                    fg="red",
                    command=root.destroy)
+#clicking destroys the root
 quit_button.pack(side=tkinter.LEFT)
-
+#place button next to run 
 
 menubar = tkinter.Menu(root)
+#set up menubar
 root.config(menu=menubar)
 model_menu = tkinter.Menu(menubar)
 menubar.add_cascade(label="Model", menu=model_menu)
+#puts an optional second run method
 model_menu.add_command(label="Run model", command=run, state="normal") 
 
 
-#w = tkinter.Canvas(root, width=200, height=200)
-#w.pack()
 
 root.mainloop()
 tkinter.mainloop()
+#end of tkinter 
+#end of model
