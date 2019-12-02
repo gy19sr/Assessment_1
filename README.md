@@ -36,7 +36,7 @@ download whole repository to run model (model, in, agentframework are essential)
 7. Then click the "change wolf amount" button.
 8. Only once those are set should you then click the "Run Model" Button.
 9. Once the model finishes you can click "quit".
-10.The console will print if the stopping condition is met and number of iterations.
+10. The console will print if the stopping condition is met and number of iterations.
 
 ### Running the model again:
 If wish to run model again, make sure you end the run by clicking the red square in console. Then restarting the kernal ensures that the model will run smoothly again 
