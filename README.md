@@ -20,16 +20,16 @@ download whole repository to run model (model, in, agentframework are essential)
 
 ## Instructions to run model:
 
-open "Model.py" in Spyder (Phthon)
-Run model
-full screen the pop up model window 
-use the slider to change the number of sheep 
-then click the "change sheep amount" button
-use the slider to change the number of wolves
-then click the "change wolf amount" button
-Only once those are set should you then click the "Run Model" Button
-Once the model finishes you can click "quit"
-the console will print if the stopping condition is met and number of iterations
+1. open "Model.py" in Spyder (Phthon).
+2. Run model.
+3. full screen the pop up model window.
+4. use the slider to change the number of sheep. 
+5. then click the "change sheep amount" button.
+6. use the slider to change the number of wolves.
+7. then click the "change wolf amount" button.
+8. Only once those are set should you then click the "Run Model" Button.
+9. Once the model finishes you can click "quit".
+10. the console will print if the stopping condition is met and number of iterations.
 
 ### Running the model again:
 If wish to run model again, make sure you end the run by clicking the red square in console. Then restarting the kernal ensures that the model will run smoothly again 
