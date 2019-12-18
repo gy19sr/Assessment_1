@@ -63,7 +63,7 @@ class Agent:
             closestwolf = min(closewolf)
             #print(closestSheep)
             if (self.x > closestwolf[1]):
-                self.x = self.x + 3
+                self.x = self.x + 2
                 #if father x than the cloest wolf keep going way
             elif (self.x == closestwolf[1]):
                 self.x == closestwolf[1]
@@ -72,7 +72,7 @@ class Agent:
                 self.x = self.x - 1
                 #if father left x than the cloest wolf keep going left
             if (self.y > closestwolf[1]):
-                self.y = self.y + 4
+                self.y = self.y + 3
                 #if higher than close wolf keep heading up
             elif (self.y == closestwolf[1]):
                 #donothing
